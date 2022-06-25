@@ -18,4 +18,4 @@ Links to the other Repos for this Project:
 
 - [Database](https://github.com/rjones18/RDS_Database)
 
-- [VPC](https://github.com/rjones18/vpc-terraform-project))
+- [VPC](https://github.com/rjones18/vpc-terraform-project)
