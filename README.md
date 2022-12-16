@@ -10,12 +10,7 @@ The application is broken down into the architecture below:
 
 
 
-Links to the other Repos for this Project:
+Links to the AMI-Build Repo for this Project:
 
 - [Packer AMI Build](https://github.com/rjones18/Wordpress-AMI-Build)
 
-- [Infrastructure](https://github.com/rjones18/Application-Infrastructure-)
-
-- [Database](https://github.com/rjones18/RDS_Database)
-
-- [VPC](https://github.com/rjones18/vpc-terraform-project)
