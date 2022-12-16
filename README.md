@@ -6,7 +6,7 @@ In this project I created a Wordpress blog website in AWS using Terraform, Packe
 
 The application is broken down into the architecture below:
 
-![wordpress](https://github.com/rjones18/Images/blob/main/wordpress)
+![wordpress](https://github.com/rjones18/Images/blob/main/terraform-wordpress-project.png)
 
 
 
