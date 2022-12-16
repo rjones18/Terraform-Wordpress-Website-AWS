@@ -1,6 +1,6 @@
 # Wordpress-Website-AWS
 
-In this project I created a Wordpress blog website in AWS using Terraform, Packer, and Ansible. Terraform was used to create the infrastructure while Packer used Ansible playbooks to install packages on a EC2 instance and create a AMI. The users post are being stored in a RDS MySQL database. I have also added a custom domain name through Route 53 and attached a SSL certificate for HTTPS via Certificate Manager.
+In this project I created a Wordpress blog website in AWS using Terraform, GitHub Actions, Packer, and Ansible. Terraform was used to create the infrastructure while Packer used Ansible playbooks to install packages on a EC2 instance and create a AMI. The users post are being stored in a RDS MySQL database. I have also added a custom domain name through Route 53 and attached a SSL certificate for HTTPS via Certificate Manager.
 
 ## Application Breakdown
 
