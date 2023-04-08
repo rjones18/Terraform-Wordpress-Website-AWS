@@ -1,6 +1,8 @@
 # Terraform-Wordpress-Website-AWS
 
-In this project I created a Wordpress blog website in AWS using Terraform, GitHub Actions, Packer, and Ansible. Terraform was used to create the infrastructure while Packer used Ansible playbooks to install packages on a EC2 instance and create a AMI. The users post are being stored in a RDS MySQL database. I have also added a custom domain name through Route 53 and attached a SSL certificate for HTTPS via Certificate Manager.
+In this project, I leveraged several technologies to create a WordPress blog website in AWS. To automate the infrastructure setup, I utilized Terraform as the infrastructure-as-code tool to define the AWS resources needed to support the WordPress site. Next, I utilized Packer to create a custom Amazon Machine Image (AMI) with pre-installed packages using Ansible playbooks.
+
+To store the user's posts, I deployed a MySQL database instance in Amazon RDS. Additionally, I integrated Route 53 to attach a custom domain name to the website and configured a Secure Sockets Layer (SSL) certificate via Certificate Manager for HTTPS encryption. All of these tools were orchestrated and deployed through GitHub Actions, a popular continuous integration and delivery platform. By using this technical stack, I was able to automate and streamline the entire deployment process, resulting in a scalable and secure WordPress website in AWS.
 
 ## Application Breakdown
 
