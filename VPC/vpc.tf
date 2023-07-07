@@ -2,36 +2,36 @@ resource "aws_vpc" "main" {
   cidr_block = "192.168.0.0/16"
 
   tags = {
-    Name = "talent-academy-vpc"
+    Name = "project-vpc"
   }
 }
 
-resource "aws_subnet" "public" {
+resource "aws_subnet" "public-a" {
   vpc_id                  = aws_vpc.main.id
   cidr_block              = "192.168.1.0/24"
   availability_zone       = "us-east-1a"
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "talent-academy-public"
+    Name = "web-subnet-a"
   }
 }
 
-resource "aws_subnet" "private" {
+resource "aws_subnet" "private-a" {
   vpc_id            = aws_vpc.main.id
-  cidr_block        = "192.168.2.0/24"
+  cidr_block        = "192.168.11.0/24"
   availability_zone = "us-east-1a"
   tags = {
-    Name = "talent-academy-private-a"
+    Name = "app-subnet-a"
   }
 }
 
-resource "aws_subnet" "data" {
+resource "aws_subnet" "data-a" {
   vpc_id            = aws_vpc.main.id
-  cidr_block        = "192.168.3.0/24"
+  cidr_block        = "192.168.21.0/24"
   availability_zone = "us-east-1a"
   tags = {
-    Name = "talent-academy-data-a"
+    Name = "data-subnet-a"
   }
 }
 
@@ -39,31 +39,30 @@ resource "aws_subnet" "data" {
 
 resource "aws_subnet" "public-b" {
   vpc_id                  = aws_vpc.main.id
-  cidr_block              = "192.168.4.0/24"
-  availability_zone       = "us-east-1c"
+  cidr_block              = "192.168.2.0/24"
+  availability_zone       = "us-east-1b"
   map_public_ip_on_launch = true
   tags = {
-    Name = "talent-academy-public-b"
-  }
-}
-
-resource "aws_subnet" "public-a" {
-  vpc_id                  = aws_vpc.main.id
-  cidr_block              = "192.168.5.0/24"
-  availability_zone       = "us-east-1a"
-  map_public_ip_on_launch = true
-  tags = {
-    Name = "talent-academy-public-a"
+    Name = "web-subnet-b"
   }
 }
 
 
-resource "aws_subnet" "private-a" {
+resource "aws_subnet" "private-b" {
   vpc_id            = aws_vpc.main.id
-  cidr_block        = "192.168.6.0/24"
+  cidr_block        = "192.168.12.0/24"
   availability_zone = "us-east-1b"
   tags = {
-    Name = "talent-academy-private-b"
+    Name = "app-subnet-b"
+  }
+}
+
+resource "aws_subnet" "data-b" {
+  vpc_id            = aws_vpc.main.id
+  cidr_block        = "192.168.22.0/24"
+  availability_zone = "us-east-1b"
+  tags = {
+    Name = "data-subnet-b"
   }
 }
 
@@ -71,16 +70,16 @@ resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.main.id
 
   tags = {
-    Name = "talent-academy-igw"
+    Name = "project-vpc-igw"
   }
 }
 
 resource "aws_nat_gateway" "nat_gw" {
   allocation_id = aws_eip.nat_eip.id
-  subnet_id     = aws_subnet.public.id
+  subnet_id     = aws_subnet.public-a.id
 
   tags = {
-    Name = "talent-academy-nat_gw"
+    Name = "project-vpc-nat_gw"
   }
 }
 
@@ -110,40 +109,42 @@ resource "aws_route_table" "internet_route_table" {
   }
 
   tags = {
-    Name = "nat-route-table"
+    Name = "internet-route-table"
   }
 }
 
-# ASSOCIATE ROUTE TABLE -- APP LAYER
-resource "aws_route_table_association" "nat_route_table_association_private" {
-  subnet_id      = aws_subnet.private.id
-  route_table_id = aws_route_table.nat_route_table.id
+# ASSOCIATE ROUTE TABLE -- WEB LAYER 1
+resource "aws_route_table_association" "internet_route_table_association_public_a" {
+  subnet_id      = aws_subnet.public-a.id
+  route_table_id = aws_route_table.internet_route_table.id
 }
 
+# ASSOCIATE ROUTE TABLE -- APP LAYER 1
 resource "aws_route_table_association" "nat_route_table_association_private_a" {
   subnet_id      = aws_subnet.private-a.id
   route_table_id = aws_route_table.nat_route_table.id
 }
 
-resource "aws_route_table_association" "nat_route_table_association_data" {
-  subnet_id      = aws_subnet.data.id
+# ASSOCIATE ROUTE TABLE -- DATA LAYER 1
+resource "aws_route_table_association" "nat_route_table_association_data_a" {
+  subnet_id      = aws_subnet.data-a.id
   route_table_id = aws_route_table.nat_route_table.id
 }
 
-# ASSOCIATE ROUTE TABLE -- PUBLIC LAYER
-resource "aws_route_table_association" "internet_route_table_association_public" {
-  subnet_id      = aws_subnet.public.id
-  route_table_id = aws_route_table.internet_route_table.id
-}
-
-# ASSOCIATE ROUTE TABLE -- PUBLIC LAYER
-resource "aws_route_table_association" "internet_route_table_association_public-a" {
-  subnet_id      = aws_subnet.public-a.id
-  route_table_id = aws_route_table.internet_route_table.id
-}
-
-# ASSOCIATE ROUTE TABLE -- PUBLIC LAYER
-resource "aws_route_table_association" "internet_route_table_association_public-b" {
+# ASSOCIATE ROUTE TABLE -- WEB LAYER 2
+resource "aws_route_table_association" "internet_route_table_association_public_b" {
   subnet_id      = aws_subnet.public-b.id
   route_table_id = aws_route_table.internet_route_table.id
+}
+
+# ASSOCIATE ROUTE TABLE -- APP LAYER 2
+resource "aws_route_table_association" "nat_route_table_association_private_b" {
+  subnet_id      = aws_subnet.private-b.id
+  route_table_id = aws_route_table.nat_route_table.id
+}
+
+# ASSOCIATE ROUTE TABLE -- DATA LAYER 2
+resource "aws_route_table_association" "nat_route_table_association_data_b" {
+  subnet_id      = aws_subnet.data-b.id
+  route_table_id = aws_route_table.nat_route_table.id
 }

@@ -8,11 +8,11 @@ To store the user's posts, I deployed a MySQL database instance in Amazon RDS. A
 
 The application is broken down into the architecture below:
 
-![wordpress](https://github.com/rjones18/Images/blob/main/terraform-wordpress-project.png)
+![wordpress](https://github.com/rjones18/Images/blob/main/AWS%20Wordpress%20Website.png)
 
 
 
 Links to the AMI-Build Repo for this Project:
 
-- [Packer AMI Build](https://github.com/rjones18/Wordpress-AMI-Build)
+- [Packer AMI Build](https://github.com/rjones18/Wordpress-AMI-Build) (Currently being updated)
 

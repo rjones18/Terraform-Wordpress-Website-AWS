@@ -5,7 +5,7 @@ resource "aws_security_group" "app_sg" {
 
   #INBOUND CONNECTIONS
   ingress {
-    description     = "Allow SSH into the EC2"
+    description     = "Allow HTTP"
     from_port       = 80
     to_port         = 80
     protocol        = "tcp"
@@ -29,9 +29,9 @@ resource "aws_security_group" "loadbalancer_sg" {
 
   #INBOUND CONNECTIONS
   ingress {
-    description = "Allow SSH into the EC2"
-    from_port   = 80
-    to_port     = 80
+    description = "Allow HTTPS"
+    from_port   = 443
+    to_port     = 443
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"] # ACCESS to the Web server from internet
   }

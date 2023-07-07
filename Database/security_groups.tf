@@ -8,7 +8,7 @@ resource "aws_security_group" "database-security-group" {
     from_port       = 3306
     to_port         = 3306
     protocol        = "tcp"
-    security_groups = ["sg-040a39c9422e7dea4"]
+    security_groups = ["sg-0b0a5823d1ab2616d"]
   }
 
   # OUTBOUD CONNECTIONS

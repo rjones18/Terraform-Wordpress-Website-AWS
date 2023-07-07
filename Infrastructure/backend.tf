@@ -1,6 +1,6 @@
 terraform {
   backend "s3" {
-    bucket         = "ta-challenge-wp-team-2"
+    bucket         = "reggie-talent-academy-686520628199-tfstates"
     key            = "Talent-Academy/labs/application-infrastructure/terraform.tfstates"
     dynamodb_table = "terraform-lock"
   }

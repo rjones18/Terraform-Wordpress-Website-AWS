@@ -1,10 +1,10 @@
 # ASSIGNING VALUE TO VARIABLES
-aws_owner_id                = "342623272824"
-aws_ami_name                = "wordpress-website-20220505141241"
-vpc_name                    = "Wordpress-vpc"
-public_a_subnet_name        = "Wordpress-public-a"
-public_b_subnet_name        = "Wordpress-public-b"
-private_a_subnet_name       = "Wordpress-private-a"
-private_b_subnet_name       = "Wordpress-private-b"
+aws_owner_id                = "614768946157"
+aws_ami_name                = "wordpress-golden-image"
+vpc_name                    = "project-vpc"
+public_a_subnet_name        = "web-subnet-a"
+public_b_subnet_name        = "web-subnet-b"
+private_a_subnet_name       = "app-subnet-a"
+private_b_subnet_name       = "app-subnet-b"
 number_of_private_instances = 4
 subdomain                   = "my-blue-greeen-app"
