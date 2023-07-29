@@ -1,8 +1,8 @@
 # Terraform-Wordpress-Website-AWS
 
-In this project, I leveraged several technologies to create a WordPress blog website in AWS. To automate the infrastructure setup, I utilized Terraform as the infrastructure-as-code tool to define the AWS resources needed to support the WordPress site. Next, I utilized Packer to create a custom Amazon Machine Image (AMI) with pre-installed packages using Ansible playbooks.
+In this project, I employed a robust suite of technologies to automate the creation of a secure and scalable WordPress blog site on AWS. Using Terraform and Packer, I automated the infrastructure setup and generated custom Amazon Machine Images (AMIs), respectively. I fortified the application's security with Snyk integrated into GitHub Actions, identifying and rectifying vulnerabilities in application dependencies. Amazon RDS was utilized for database management, storing user's posts in a MySQL instance.
 
-To store the user's posts, I deployed a MySQL database instance in Amazon RDS. Additionally, I integrated Route 53 to attach a custom domain name to the website and configured a Secure Sockets Layer (SSL) certificate via Certificate Manager for HTTPS encryption. All of these tools were orchestrated and deployed through GitHub Actions, a popular continuous integration and delivery platform. By using this technical stack, I was able to automate and streamline the entire deployment process, resulting in a scalable and secure WordPress website in AWS.
+To enhance security and operational insights, I incorporated Amazon Inspector for automated security assessments and CloudWatch Agent for comprehensive monitoring on the EC2 instances. I secured web traffic via an SSL certificate configured through AWS Certificate Manager, and employed Route 53 for domain management. Lastly, I introduced a CloudFront distribution in front of the application load balancer for improved site performance and security, establishing a resilient and performant WordPress website hosted on AWS.
 
 ## Application Breakdown
 

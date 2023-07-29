@@ -13,7 +13,7 @@ resource "aws_subnet" "public-a" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "web-subnet-a"
+    Name = "web-subnet-1"
   }
 }
 
@@ -22,7 +22,7 @@ resource "aws_subnet" "private-a" {
   cidr_block        = "192.168.11.0/24"
   availability_zone = "us-east-1a"
   tags = {
-    Name = "app-subnet-a"
+    Name = "app-subnet-1"
   }
 }
 
@@ -31,7 +31,7 @@ resource "aws_subnet" "data-a" {
   cidr_block        = "192.168.21.0/24"
   availability_zone = "us-east-1a"
   tags = {
-    Name = "data-subnet-a"
+    Name = "data-subnet-1"
   }
 }
 
@@ -43,7 +43,7 @@ resource "aws_subnet" "public-b" {
   availability_zone       = "us-east-1b"
   map_public_ip_on_launch = true
   tags = {
-    Name = "web-subnet-b"
+    Name = "web-subnet-2"
   }
 }
 
@@ -53,7 +53,7 @@ resource "aws_subnet" "private-b" {
   cidr_block        = "192.168.12.0/24"
   availability_zone = "us-east-1b"
   tags = {
-    Name = "app-subnet-b"
+    Name = "app-subnet-2"
   }
 }
 
@@ -62,7 +62,7 @@ resource "aws_subnet" "data-b" {
   cidr_block        = "192.168.22.0/24"
   availability_zone = "us-east-1b"
   tags = {
-    Name = "data-subnet-b"
+    Name = "data-subnet-2"
   }
 }
 
@@ -76,7 +76,7 @@ resource "aws_internet_gateway" "igw" {
 
 resource "aws_nat_gateway" "nat_gw" {
   allocation_id = aws_eip.nat_eip.id
-  subnet_id     = aws_subnet.public-a.id
+  subnet_id     = aws_subnet.public-b.id
 
   tags = {
     Name = "project-vpc-nat_gw"
