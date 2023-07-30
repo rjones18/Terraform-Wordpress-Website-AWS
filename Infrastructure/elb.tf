@@ -21,7 +21,7 @@ resource "aws_lb_listener" "https_listener" {
     type = "forward"
     forward {
       target_group {
-        arn = aws_lb_target_group.blue_target.arn
+        arn = aws_lb_target_group.wp_target.arn
       }
     }
   }
@@ -120,57 +120,4 @@ resource "aws_route53_record" "www" {
     zone_id                = aws_cloudfront_distribution.s3_distribution.hosted_zone_id
     evaluate_target_health = false
   }
-}
-
-#SQL Injection Rule
-resource "aws_wafregional_sql_injection_match_set" "sql_injection_match_set" {
-  name = "tfWafSqlInjectionMatchSet"
-  
-  sql_injection_match_tuple {
-    field_to_match {
-      type = "URI"
-    }
-
-    text_transformation = "URL_DECODE"
-  }
-}
-
-resource "aws_wafregional_rule" "sql_injection_rule" {
-  depends_on  = [aws_wafregional_sql_injection_match_set.sql_injection_match_set]
-  name        = "tfWAFRule"
-  metric_name = "tfWAFRule"
-  
-  predicate {
-    data_id = aws_wafregional_sql_injection_match_set.sql_injection_match_set.id
-    negated = false
-    type    = "SqlInjectionMatch"
-  }
-}
-
-#ACL
-resource "aws_wafregional_web_acl" "waf_acl" {
-  depends_on  = [aws_wafregional_rule.sql_injection_rule]
-  name        = "tfWebACL"
-  metric_name = "tfWebACL"
-
-  default_action {
-    type = "ALLOW"
-  }
-
-  rule {
-    action {
-      type = "BLOCK"
-    }
-
-    priority = 1
-    rule_id  = aws_wafregional_rule.sql_injection_rule.id
-    type     = "REGULAR"
-  }
-}
-
-# Associate WAF ACL with Application Load Balancer
-resource "aws_wafregional_web_acl_association" "waf_acl_association" {
-  depends_on    = [aws_wafregional_web_acl.waf_acl]
-  resource_arn  = aws_lb.application_lb.arn
-  web_acl_id    = aws_wafregional_web_acl.waf_acl.id
 }

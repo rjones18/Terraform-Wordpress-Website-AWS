@@ -39,7 +39,7 @@ resource "aws_iam_instance_profile" "instance_profile" {
   role = aws_iam_role.instance_role.name
 }
 
-resource "aws_launch_template" "blue_template" {
+resource "aws_launch_template" "wp_template" {
   name_prefix            = "wp_template"
   image_id               = data.aws_ami.aws_basic_linux.id
   instance_type          = var.ec2_type
@@ -50,7 +50,7 @@ resource "aws_launch_template" "blue_template" {
   }
 }
 
-resource "aws_autoscaling_group" "blue" {
+resource "aws_autoscaling_group" "wp" {
   name                = "wp_group"
   desired_capacity    = 2
   max_size            = 5
@@ -60,7 +60,7 @@ resource "aws_autoscaling_group" "blue" {
   vpc_zone_identifier = [data.aws_subnet.private-a.id, data.aws_subnet.private-b.id]
 
   launch_template {
-    id      = aws_launch_template.blue_template.id
+    id      = aws_launch_template.wp_template.id
     version = "$Latest"
   }
 

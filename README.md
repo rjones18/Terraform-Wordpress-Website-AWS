@@ -8,7 +8,7 @@ To enhance security and operational insights, I incorporated Amazon Inspector fo
 
 The application is broken down into the architecture below:
 
-![wordpress](https://github.com/rjones18/Images/blob/main/AWS%20Wordpress%20Website.png)
+![wordpress](https://github.com/rjones18/Images/blob/main/AWS%20Wordpress%20Website%20(1).png)
 
 
 
