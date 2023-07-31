@@ -11,6 +11,11 @@ The application is broken down into the architecture below:
 ![wordpress](https://github.com/rjones18/Images/blob/main/AWS%20Wordpress%20Website%20(1).png)
 
 
+Link to the 3 repos with Github Actions:
+
+- [Infrastructure Pipeline](https://github.com/rjones18/AWS-WP-Infrastructure)
+- [VPC Pipeline](https://github.com/rjones18/AWS-WP-VPC)
+- [Database Pipeline](https://github.com/rjones18/AWS-WP-RDS)
 
 Links to the AMI-Build Repo for this Project:
 
